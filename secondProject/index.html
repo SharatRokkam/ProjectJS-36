@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Generator</h1>
+        <div class="input-section">
+            <label for="ingredient">Enter an Ingredient:</label>
+            <input type="text" id="ingredient" placeholder="e.g., chicken">
+            <button id="generate-button">Generate Recipe</button>
+        </div>
+        <div class="recipe-section">
+            <h2>Generated Recipes</h2>
+            <div id="recipe-output"></div>
+        </div>
+    </div>
+
+    <!-- Modal for displaying recipe details -->
+    <div id="recipe-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-recipe-content"></div>
+        </div>
+    </div>
+
+    <script src="javascript.js"></script>
+</body>
+</html>

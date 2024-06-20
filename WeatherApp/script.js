@@ -1,17 +1,21 @@
 const apikey = "f54f778b85e4976b5234352051529db2";
 
 const main = document.getElementById("main");
-const form = document.getElementById("form");
 const search = document.getElementById("search");
+const form = document.getElementById("form");
+
+// console.log('working');
 
 const url = (city) =>
   `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
 
-async function getWeatherByLocation(city) {
-  const response = await fetch(url(city), { origin: "cors" });
-  const respData = await response.json();
+//cross origin resource
 
-  console.log(respData);
+async function getWeatherByLocation(city) {
+  const resp = await fetch(url(city), { origin: "cors" });
+  const respData = await resp.json();
+
+//   console.log(respData);
 
   addWeatherToPage(respData);
 }
@@ -25,19 +29,17 @@ function addWeatherToPage(data) {
   weather.classList.add("weather");
 
   weather.innerHTML = `
-        <h2><img src="https://openweathermap.org/img/wn/${
-          data.weather[0].icon
-        }@2x.png" /> ${temp}°C <img src="https://openweathermap.org/img/wn/${
+  <h2><img src="https://api.openweathermap.org/img/wn/${
     data.weather[0].icon
-  }@2x.png" /></h2>
-        <small>${data.weather[0].main}</small>
-        <div class="more-info">
-        <p>Humidity : <span>${humidity}%</span></p>
-        <p>Wind speed : <span>${+Math.trunc(windSpeed * 3.16)}km/h</span></p>
-        </div>
-    `;
+  }@2x.png" /> ${temp}C <img src="https://api.openweathermap.org/img/wn/${
+    data.weather[0].icon
+  }@2x.png" /> </h2>
+  <small>${data.weather[0].main}</small>
+  <div class="more-info">
+  <p>Humidity : <span>${humidity}%</span></p>
+  <p>Wind Speed: <span>${+Math.trunc(windSpeed * 3.16)} km/h</span></p>
+  </div>`;
 
-  // cleanup
   main.innerHTML = "";
 
   main.appendChild(weather);
